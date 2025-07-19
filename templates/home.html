@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VoiceGuard - AI-Powered Deep Fake Audio Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <style>
+      .clickable {
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .clickable:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-gray-800 font-sans">
+    <!-- Navbar -->
+    <nav
+      class="bg-gradient-to-r from-indigo-900 via-gray-300 to-green-600 text-white shadow-lg sticky top-0 z-50"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1995/1995350.png"
+            alt="VoiceGuard Logo"
+            class="w-10 h-10"
+          />
+          <h1 class="text-3xl font-extrabold tracking-wide">VoiceGuard</h1>
+        </div>
+        <ul class="flex items-center gap-6 text-lg flex-wrap mt-2 sm:mt-0">
+          <li><a href="#" class="hover:underline">Home</a></li>
+          <li><a href="#services" class="hover:underline">Services</a></li>
+
+          {% if session.get('user') %}
+          <li class="font-medium">Hello, {{ session['user'] }}</li>
+          <li>
+            <a href="{{ url_for('logout') }}" class="hover:underline">Logout</a>
+          </li>
+          {% else %}
+          <li>
+            <a href="{{ url_for('login') }}" class="hover:underline">Login</a>
+          </li>
+          <li>
+            <a href="{{ url_for('register') }}" class="hover:underline"
+              >Register</a
+            >
+          </li>
+          {% endif %} {% if session['user_email'] ==
+          'megharashokashok@gmail.com' %}
+          <li>
+            <a
+              href="{{ url_for('admin_users') }}"
+              class="text-yellow-300 font-semibold"
+              >View Users</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div
+      x-data="{ 
+        current: 0, 
+        slides: [
+          { image: 'static/synthetic.jpg', text: 'AI-Powered Detection – Expose Synthetic Voices Instantly' },
+          { image: 'static/safeguard.jpg', text: 'Safeguard Your Identity – Stop Voice-Based Fraud Before It Starts' },
+          { image: 'static/hear.jpg', text: 'Hear the Truth – Ensure Authenticity in Every Conversation' },
+           { image: 'static/synthetic.jpg', text: 'AI-Powered Detection – Expose Synthetic Voices Instantly' },
+        ]
+      }"
+      x-init="setInterval(() => current = (current + 1) % slides.length, 1000)"
+      class="relative w-full h-[70vh] overflow-hidden"
+    >
+      <template x-for="(slide, index) in slides" :key="index">
+        <div
+          x-show="current === index"
+          x-transition:enter="transition-opacity duration-1000"
+          x-transition:leave="transition-opacity duration-1000"
+          class="absolute inset-0"
+        >
+          <img
+            :src="slide.image"
+            class="w-full h-full object-cover brightness-70"
+            alt="fake_audio"
+          />
+          <div
+            class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center text-white px-4 text-center"
+          >
+            <h2
+              class="text-3xl md:text-5xl font-extrabold max-w-4xl leading-tight drop-shadow-md"
+              x-text="slide.text"
+            ></h2>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- About Section -->
+    <section
+      class="py-16 px-6 bg-gradient-to-br from-white via-sky-50 to-white"
+    >
+      <div class="max-w-5xl mx-auto text-center">
+        <h2 class="text-4xl font-bold text-indigo-900 mb-6">
+          Behind This Application
+        </h2>
+        <p class="text-lg text-gray-700 leading-relaxed">
+          <strong>VoiceGuard</strong> protects individuals and organizations
+          from the growing threat of AI-generated audio deepfakes. Imagine
+          receiving a call from a trusted person—only to realize it was never
+          them. In today's world, synthetic voices can mimic real ones with
+          alarming accuracy. With advanced machine learning models and acoustic
+          pattern analysis, VoiceGuard detects and flags manipulated audio in
+          real time. It empowers users to verify authenticity, fight
+          misinformation, and prevent fraud. <br /><br />
+          In an age where hearing is no longer believing,
+          <strong>VoiceGuard</strong> ensures your voice-based interactions
+          remain secure, trustworthy, and real.
+        </p>
+      </div>
+    </section>
+    <section id="services" class="py-14 px-6 bg-slate-100">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-blue-800 text-center mb-10">
+          Our Smart Services
+        </h2>
+        <div class="flex justify-center">
+          <a
+            href="{% if session.get('user') %}
+                {{ url_for('index') }}
+              {% else %}
+                {{ url_for('login') }}
+              {% endif %}"
+            class="block bg-white p-6 rounded-xl text-center clickable shadow-md w-full max-w-xl border border-purple-300 hover:border-purple-500 transition"
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3658/3658909.png"
+              alt="Audio Detection"
+              class="mx-auto w-16 mb-4"
+            />
+            <h3 class="text-xl font-semibold mb-2">
+              Deep Fake Audio Detection
+            </h3>
+            <p class="text-gray-700">
+              🎧 Upload a <strong>.wav</strong> file and detect whether the
+              audio is real or AI-generated. <br /><br />
+              📊 Get instant results with a confidence score and audio
+              spectrogram. Useful for journalists, researchers, and
+              fact-checkers.
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gradient-to-r from-indigo-900 to-green-600 text-white shadow-lg sticky top-1 z-50"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center sm:text-left"
+      >
+        <div>
+          <h4 class="text-xl font-bold mb-3">Security Resources</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a
+                href="https://www.kaspersky.com/resource-center"
+                target="_blank"
+                class="hover:underline"
+                >🔐 Cybersecurity Help</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.wired.com/tag/deepfakes/"
+                target="_blank"
+                class="hover:underline"
+                >🧠 Deepfake Awareness</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://haveibeenpwned.com/"
+                target="_blank"
+                class="hover:underline"
+                >🔍 Check for Data Breaches</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.interpol.int/en/Crimes/Cybercrime"
+                target="_blank"
+                class="hover:underline"
+                >🌐 Interpol Cybercrime</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xl font-bold mb-3">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:underline">Home</a></li>
+            <li><a href="#services" class="hover:underline">Services</a></li>
+            <li><a href="login.html" class="hover:underline">Login</a></li>
+            <li>
+              <a href="register.html" class="hover:underline">Register</a>
+            </li>
+          </ul>
+        </div>
+        <div class="sm:col-span-2">
+          <h4 class="text-xl font-bold mb-3">About VoiceGuard</h4>
+          <p class="text-sm leading-relaxed">
+            VoiceGuard is built to protect truth in the age of AI-generated
+            misinformation. By combining cutting-edge machine learning with
+            acoustic fingerprinting, we help users detect, prevent, and respond
+            to deepfake voice threats.
+          </p>
+        </div>
+      </div>
+      <div class="text-center text-sm mt-8 text-blue-200">
+        © 2025 VoiceGuard. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>
+here don't change any code only just modify ovelapping of the text in carousel

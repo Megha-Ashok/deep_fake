@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio Deepfake Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="font-[Roboto] bg-gradient-to-tr from-blue-200 via-purple-100 to-green-100 bg-[length:600%_600%] animate-[animatedBG_25s_ease_infinite] relative overflow-x-hidden"
+  >
+    <!-- Tailwind Animation Keyframes -->
+    <style>
+      @keyframes animatedBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) translateX(0);
+        }
+        100% {
+          transform: translateY(-100vh) translateX(50px);
+        }
+      }
+    </style>
+
+    <!-- ✅ Tailwind Gradient Navbar -->
+    <nav
+      class="bg-gradient-to-r from-indigo-900 via-gray-300 to-green-600 text-white shadow-lg sticky top-0 z-50"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1995/1995350.png"
+            alt="VoiceGuard Logo"
+            class="w-10 h-10"
+          />
+          <h1 class="text-3xl font-extrabold tracking-wide">VoiceGuard</h1>
+        </div>
+        <ul class="flex items-center gap-6 text-lg flex-wrap mt-2 sm:mt-0">
+          <li>
+            <a href="{{ url_for('logout') }}" class="hover:underline">Home</a>
+          </li>
+          <li><a href="#services" class="hover:underline">Services</a></li>
+
+          {% if session.get('user') %}
+          <li class="font-medium">Hello, {{ session['user'] }}</li>
+          <li>
+            <a href="{{ url_for('logout') }}" class="hover:underline">Logout</a>
+          </li>
+          {% else %}
+          <li>
+            <a href="{{ url_for('login') }}" class="hover:underline">Login</a>
+          </li>
+          <li>
+            <a href="{{ url_for('register') }}" class="hover:underline"
+              >Register</a
+            >
+          </li>
+          {% endif %} {% if session['user_email'] ==
+          'megharashokashok@gmail.com' %}
+          <li>
+            <a
+              href="{{ url_for('admin_users') }}"
+              class="text-yellow-300 font-semibold hover:underline"
+              >View Users</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <!-- 🎧 Upload & Prediction -->
+    <div
+      class="container mt-24 mx-auto bg-white/80 max-w-md w-[500px] rounded-2xl p-8 text-center shadow-xl backdrop-blur z-10 relative"
+    >
+      <h1 class="text-2xl font-bold text-purple-900 mb-6">
+        🎧 Audio Deepfake Detection
+      </h1>
+
+      <form method="POST" action="/predict" enctype="multipart/form-data">
+        <label
+          for="audio"
+          class="block border-2 border-dashed border-purple-400 rounded-xl p-6 bg-white/50 hover:bg-white/80 transition cursor-pointer shadow hover:shadow-lg"
+        >
+          <input
+            id="audio"
+            type="file"
+            name="audio"
+            accept=".wav"
+            class="hidden"
+            required
+            onchange="updateFileName(); clearResult();"
+          />
+          <p id="file-name" class="text-purple-800 font-medium text-center">
+            Click to choose a <strong>.wav</strong> file
+          </p>
+        </label>
+
+        <button
+          class="btn mt-6 bg-purple-600 hover:bg-purple-800 text-white font-semibold px-6 py-2 rounded-lg transition duration-300"
+          type="submit"
+        >
+          Predict
+        </button>
+      </form>
+
+      <div
+        id="result"
+        class="mt-6 text-lg font-medium"
+        style="{% if not prediction %}display: none;{% endif %}"
+      >
+        {% if prediction %}
+        <div class="result">
+          <p class="{{ label_class }} mt-4">
+            Prediction: {{ prediction }} ({{ confidence }}%)
+          </p>
+          {% if image %}
+          <img
+            src="{{ image }}"
+            alt="Mel Spectrogram"
+            class="mt-4 rounded-xl shadow-md mx-auto max-w-full"
+          />
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <script>
+      function clearResult() {
+        const resultBox = document.getElementById("result");
+        if (resultBox) {
+          resultBox.style.display = "none";
+        }
+      }
+      function clearResult() {
+        const resultBox = document.getElementById("result");
+        if (resultBox) {
+          resultBox.style.display = "none";
+        }
+      }
+
+      function updateFileName() {
+        const input = document.getElementById("audio");
+        const label = document.getElementById("file-name");
+        if (input.files && input.files.length > 0) {
+          label.innerHTML = `<span class="text-green-800 font-semibold">Selected:</span> ${input.files[0]}`;
+        } else {
+          label.innerHTML = "Click to choose a <strong>.wav</strong> file";
+        }
+      }
+    </script>
+  </body>
+</html>

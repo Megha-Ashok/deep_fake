@@ -1,0 +1,8 @@
+Flask
+numpy
+pandas
+tensorflow
+librosa
+scikit-learn
+werkzeug
+soundfile
