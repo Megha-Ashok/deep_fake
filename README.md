@@ -47,18 +47,6 @@ This project includes:
 
 ---
 
-## 🖼️ Screenshots
-|Home Page Admin as a user|
-(demo_6.png) 
-|User as Login|
-(demo_1.png)
-|Login Page |
-(demo_1.png) 
-| Upload Page|
-(demo_3.png)
-| Prediction Result |
-(demo_5.png)
-
 ## 🧠 Tech Stack
 
 **Frontend**  
@@ -117,6 +105,38 @@ This project includes:
 
 ---
 
+## 🖼️ Screenshots
+
+#### 🏠 Home Page (Admin as a User)  
+![Home Page](demo_6.png)
+
+---
+
+#### 👤 User Login Page  
+![Login Page](demo_1.png)
+
+---
+
+#### 🔐 Login Page  
+![Login Page](demo_6.png)
+
+---
+
+#### 📤 Upload Page  
+![Upload Page](demo_3.png)
+
+---
+
+#### 📊 Prediction Result Page  
+![Prediction Result](demo_5.png)
+
+---
+
+## 🔗 Demo
+
+🚀 [Click here for Live Demo](demo.mp4)  
+
+
 ## 💻 Running the Project
 
 ### ⚙️ Prerequisites
@@ -125,9 +145,5 @@ This project includes:
 pip install -r requirements.txt
 
 ---
-
-## 🔗 Demo
-
-🚀 [Click here for Live Demo]()  
 
 
