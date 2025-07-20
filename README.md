@@ -49,10 +49,8 @@ This project includes:
 
 ## 🖼️ Screenshots
 |Home Page Admin as a user | Home page user login |
-|--------------------------|----------------------|
 | ![Upload](demo_6.png) | ![Result](demo_1.png) |
 | Upload Page | Prediction Result |
-|-------------|-------------------|
 | ![Upload](demo_3.png) | ![Result](demo_5.png) |
 
 ## 🧠 Tech Stack
