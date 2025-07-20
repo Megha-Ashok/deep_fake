@@ -49,15 +49,15 @@ This project includes:
 
 ## 🖼️ Screenshots
 |Home Page Admin as a user|
-| ![Home](demo_6.png) |
+(demo_6.png) 
 |User as Login|
-|![Home](demo_1.png) |
+(demo_1.png)
 |Login Page |
-|![Home](demo_1.png) |
+(demo_1.png) 
 | Upload Page|
-| ![Upload](demo_3.png) |
+(demo_3.png)
 | Prediction Result |
-|![Result](demo_5.png) |
+(demo_5.png)
 
 ## 🧠 Tech Stack
 
