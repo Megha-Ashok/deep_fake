@@ -48,10 +48,13 @@ This project includes:
 ---
 
 ## 🖼️ Screenshots
-
+| Home Page |
+|-------------|
+|![Upload](demo_1.png)|
+|-------------------------|
 | Upload Page | Prediction Result |
 |-------------|-------------------|
-| ![Upload](demo_1.png) | ![Result](demo_2.png) |
+| ![Upload](demo_3.png) | ![Result](demo_2.png) |
 
 ---
 
