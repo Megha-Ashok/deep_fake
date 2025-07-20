@@ -51,7 +51,7 @@ This project includes:
 
 | Upload Page | Prediction Result |
 |-------------|-------------------|
-| ![Upload](demo_3.png) | ![Result](demo_4.png) |
+| ![Upload](demo_1.png) | ![Result](demo_2.png) |
 
 ---
 
