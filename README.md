@@ -10,15 +10,12 @@ Detect whether an audio file is real or AI-generated using deep learning and mel
 
 - [🚀 Project Overview](#-project-overview)
 - [🎯 Features](#-features)
-- [🖼️ Screenshots](#-screenshots)
 - [🧠 Tech Stack](#-tech-stack)
 - [📊 Model Details](#-model-details)
 - [📁 Dataset](#-dataset)
 - [💡 How It Works](#-how-it-works)
+- [🖼️ Screenshots](#-screenshots)
 - [💻 Running the Project](#-running-the-project)
-- [📈 Results](#-results)
-- [🛡️ Future Improvements](#-future-improvements)
-- [🤝 Contributors](#-contributors)
 - [🔗 Demo](#-demo)
 
 ---
