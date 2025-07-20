@@ -118,8 +118,7 @@ This project includes:
 ---
 
 #### 🔐 Login Page  
-![Login Page](Screenshot 2025-07-20 221934.png)
-
+![Login Page]()
 ---
 
 #### 📤 Upload Page  
